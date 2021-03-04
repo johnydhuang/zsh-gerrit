@@ -12,13 +12,13 @@ else
 fi
 }
 compdef _git gpr=git-checkout
-gpr!() {
+gpwip() {
 local reviewers=$(gerrit_reviewers)
 if [[ "$#" != 0 ]] && [[ "$#" != 1 ]]; then
-    git push origin "HEAD:refs/drafts/${*}${reviewers}"
+    git push origin "HEAD:refs/for/${*}"
 else
     [[ "$#" == 0 ]] && local b="$(git_current_branch)"
-    git push origin "HEAD:refs/drafts/${b:=$1}${reviewers}"
+    git push origin "HEAD:refs/for/${b:=$1}%wip"
 fi
 }
 compdef _git gpr!=git-checkout
