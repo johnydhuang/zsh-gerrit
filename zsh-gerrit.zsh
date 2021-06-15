@@ -2,7 +2,7 @@ function gerrit_reviewers() {
 # echo "%r=a@a.com,r=b@b.com,r=c@c.com"
 echo ""
 }
-gpr() {
+ger() {
 local reviewers=$(gerrit_reviewers)
 if [[ "$#" != 0 ]] && [[ "$#" != 1 ]]; then
     git push origin "HEAD:refs/for/${*}${reviewers}"
